@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     public GameObject cam;
     public float moveSpeed;
 
-    private bool canMove = true;
     private bool canAttract = false;
 
     private List<Movable> movablesToAttract = new List<Movable>();
@@ -38,32 +37,22 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(transform.position);
 
-        //uncomme nte when hand is working
-        //if (hand.IsTracked && canMove)
-        //{
-        //    Vector3 h = hand.gameObject.transform.position;// + (hand.gameObject.transform.forward * -0.2f);
-        //    Vector3 v = (h - cam.transform.position).normalized;
-        //    transform.position = Vector3.Lerp(transform.position, v * 29, speed * Time.deltaTime);
-        //}
+        Vector3 h = controller.transform.position;// + (hand.gameObject.transform.forward * -0.2f);
+        Vector3 v = (h - cam.transform.position).normalized;
+        transform.position = Vector3.Lerp(transform.position, v * 29, moveSpeed * Time.deltaTime);
 
-        //TEMPORAIRE PARCEQUE OCULUS C DES GROS GLANDS
-        if (canMove)
+        //TEMPORAIRE
+        if (hand.IsTracked && OVRInput.GetDown(OVRInput.Button.One) && !ejectionPhase)//A
         {
-            Vector3 h = controller.transform.position;// + (hand.gameObject.transform.forward * -0.2f);
-            Vector3 v = (h - cam.transform.position).normalized;
-            transform.position = Vector3.Lerp(transform.position, v * 29, moveSpeed * Time.deltaTime);
+            Attract();
         }
-        if (OVRInput.GetDown(OVRInput.Button.One) && !ejectionPhase)//A
+        if (hand.IsTracked && OVRInput.GetUp(OVRInput.Button.One) && !ejectionPhase)//A
         {
-            if (canAttract)
-                StopAttract();
-            else
-                Attract();
-        } 
+            StopAttract();
+        }
         //TEMPORAIRE STOP
 
-        //if (hand.IsTracked && canAttract)
-        if (canAttract && !ejectionPhase)
+        if (hand.IsTracked && canAttract && !ejectionPhase)
         {
             foreach (Movable m in movablesToAttract)
             {
@@ -74,13 +63,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        //delayEjectionTmp += Time.deltaTime;
-        //if (delayEjectionTmp >= delayEjection)
-        //{
-        //    delayEjectionTmp = 0;
-        //    EjectMovables();
-        //}
 
         if (movablesAbsorbed.Count >= 10 && !ejectionPhase)
         {
@@ -110,18 +92,13 @@ public class Player : MonoBehaviour
     }
 
     public void Attract()
-    {   
-        //if (!moveAndAttract)
-        //    canMove = false;
+    {
         canAttract = true;
         state = State.ATTRACT;
-        //playerModel.SetMaterial(attractMaterial);
     }
 
     public void StopAttract()
     {
-        //if (!moveAndAttract)
-        //    canMove = false;
         canAttract = false;
         foreach (Movable m in movablesToAttract)
         {

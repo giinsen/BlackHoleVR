@@ -10,6 +10,7 @@ public struct Gesture
     public List<Vector3> fingersData;
     public UnityEvent onRecognized;
 }
+
 public class GestureDetector : MonoBehaviour
 {
     public float threshold;
@@ -27,11 +28,13 @@ public class GestureDetector : MonoBehaviour
     void Start()
     {
         fingerBones = new List<OVRBone>(skeleton.Bones);
+        Debug.Log(skeleton.Bones.Count);
         previousGesture = new Gesture();
     }
 
     void Update()
     {
+        Debug.Log(skeleton.Bones.Count);
         if (Input.GetKeyDown(KeyCode.Space))
             SaveGesture();
 
@@ -79,6 +82,7 @@ public class GestureDetector : MonoBehaviour
             bool isDiscarded = false;
             for (int i = 0; i < fingerBones.Count; i++)
             {
+                Debug.Log("count ??");
                 Vector3 currentData = skeleton.transform.InverseTransformPoint(fingerBones[i].Transform.position);
                 float distance = Vector3.Distance(currentData, gesture.fingersData[i]);
                 if (distance > threshold)
@@ -94,7 +98,8 @@ public class GestureDetector : MonoBehaviour
                 currentMin = sumDistance;
                 currentGesture = gesture;
             }
-        }
+            Debug.Log(currentGesture.name + "    " + sumDistance);
+        }       
         return currentGesture;     
     }
 }

@@ -43,7 +43,6 @@ public class Movable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Dome")
         {
             rb.AddForce(-(collision.contacts[0].point - transform.position).normalized * domeCollisionForce, ForceMode.Impulse);
