@@ -20,6 +20,8 @@ public class Movable : MonoBehaviour
 
     public Vector2 randomScaleRange;
 
+    private Objective currentObjective;
+
     void Start()
     {
         rb = GetComponentInChildren<Rigidbody>();
@@ -105,5 +107,18 @@ public class Movable : MonoBehaviour
     {
         if (isUsingGravity)
             rb.useGravity = useGravity;
+    }
+
+    public void OnEnterObjective(Objective o)
+    {
+        
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        //transform.position = o.gameObject.transform.position;
+    }
+
+    public void OnExitObjective(Objective o)
+    {
+        
     }
 }
