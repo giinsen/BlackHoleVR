@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject controller;
     public GameObject cam;
     public float moveSpeed;
+    public float offsetUp;
 
     private bool canAttract = false;
 
@@ -37,10 +38,13 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(transform.position);
 
-        Vector3 h = controller.transform.position;// + (hand.gameObject.transform.forward * -0.2f);
-        Vector3 v = (h - cam.transform.position).normalized;
-        transform.position = Vector3.Lerp(transform.position, v * 29, moveSpeed * Time.deltaTime);
-
+        if (hand.IsTracked)
+        {
+            Vector3 h = controller.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
+            Vector3 v = (h - cam.transform.position).normalized;
+            transform.position = Vector3.Lerp(transform.position, v * 29, moveSpeed * Time.deltaTime);
+        }
+        
         //TEMPORAIRE
         if (hand.IsTracked && OVRInput.GetDown(OVRInput.Button.One) && !ejectionPhase)//A
         {

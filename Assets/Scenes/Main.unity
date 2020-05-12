@@ -5650,7 +5650,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 258008068}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1910506744}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
@@ -5662,7 +5662,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 258008068}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1910506744}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
@@ -8741,12 +8741,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &759822417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 112276, guid: d9809c5e8418bb047bf2c8ba1d1a2cec,
-    type: 3}
-  m_PrefabInstance: {fileID: 676553232}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &776841760
 GameObject:
   m_ObjectHideFlags: 0
@@ -13488,10 +13482,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 184190034}
-  controller: {fileID: 759822417}
+  controller: {fileID: 1910506744}
   cam: {fileID: 1206787206}
-  moveSpeed: 1
-  attractForce: 0.2
+  moveSpeed: 2
+  offsetUp: 0.3
+  attractForce: 0.25
   durationAnimationBeforeEjection: 4
 --- !u!65 &1777495615
 BoxCollider:
@@ -14117,6 +14112,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5544442210344236183, guid: 608b3d46bf8daec44b3c0583e71917ce,
     type: 3}
   m_PrefabInstance: {fileID: 142143669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1910506744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1870938896605422, guid: 835e735ca71bf78459fb2cababd74112,
+    type: 3}
+  m_PrefabInstance: {fileID: 258008068}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1914879049
 PrefabInstance:
