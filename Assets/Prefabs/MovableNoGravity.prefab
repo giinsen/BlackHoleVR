@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff88852055bb0145b1749cd5678b248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movableType: 1
   isAttracted: 0
   attractForce: 0
   player: {fileID: 0}

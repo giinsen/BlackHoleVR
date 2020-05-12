@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
+    public List<Movable.MovableType> movablesToAttract;
     private void OnTriggerEnter(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
-        if (m == null) return;
+        if (m == null || !movablesToAttract.Contains(m.movableType)) return;
         m.OnEnterObjective(this);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Movable m = other.gameObject.GetComponent<Movable>();
+        if (m == null) return;
+        m.OnExitObjective(this);
     }
 }

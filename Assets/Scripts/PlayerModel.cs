@@ -29,6 +29,23 @@ public class PlayerModel : MonoBehaviour
         m.Absorption();
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Movable m = other.gameObject.GetComponent<Movable>();
+    //    if (m == null) return;
+    //    GetComponentInParent<Player>().Absorbtion(m);
+    //    m.Absorption();
+    //    Debug.Log("absoption");
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    Movable m = other.gameObject.GetComponent<Movable>();
+    //    if (m == null) return;
+    //    m.EnableCollider();
+    //    Debug.Log("ejection");
+    //}
+
     public void SetState(Player.State state)
     {
         switch (state)

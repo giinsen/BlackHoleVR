@@ -128,6 +128,7 @@ public class Player : MonoBehaviour
     private IEnumerator _EjectMovables()
     {
         ejectionPhase = true;
+        playerModel.GetComponent<Collider>().enabled = false;
         StopAttract();
 
         yield return StartCoroutine(AnimationBeforeEjection());
@@ -150,6 +151,7 @@ public class Player : MonoBehaviour
         
         movablesAbsorbed.Clear();
         ejectionPhase = false;
+        playerModel.GetComponent<Collider>().enabled = true;
         state = State.NEUTRAL;
     }
 

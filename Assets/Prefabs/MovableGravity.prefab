@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 452269234167738132}
+  - component: {fileID: 452269234167738130}
   - component: {fileID: 452269234167738217}
   - component: {fileID: 452269234167738216}
   - component: {fileID: 452269234167738134}
   - component: {fileID: 452269234167738135}
-  - component: {fileID: 452269234167738130}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -35,6 +35,27 @@ Transform:
   m_Father: {fileID: 5544442210344236183}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452269234167738130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452269234167738131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff88852055bb0145b1749cd5678b248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movableType: 0
+  isAttracted: 0
+  attractForce: 0
+  player: {fileID: 0}
+  canBeAttracted: 1
+  startForce: 0
+  domeCollisionForce: 0
+  domeCollisionParticles: {fileID: 0}
+  randomScaleRange: {x: 1, y: 1}
 --- !u!33 &452269234167738217
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,30 +129,10 @@ MeshCollider:
   m_Material: {fileID: 13400000, guid: 9239865cb10ec064cb4eb61b8d44d770, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 289301614986012343, guid: 205f349b3321d9548866be337db176c8, type: 3}
---- !u!114 &452269234167738130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452269234167738131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff88852055bb0145b1749cd5678b248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAttracted: 0
-  attractForce: 0
-  player: {fileID: 0}
-  canBeAttracted: 1
-  startForce: 0
-  domeCollisionForce: 0
-  domeCollisionParticles: {fileID: 0}
-  randomScaleRange: {x: 1, y: 1}
 --- !u!1 &9083197915911415638
 GameObject:
   m_ObjectHideFlags: 0

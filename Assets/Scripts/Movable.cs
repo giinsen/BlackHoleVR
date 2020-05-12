@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Movable : MonoBehaviour
 {
+    public enum MovableType { GRAVITY, NOGRAVITY }
+    public MovableType movableType;
+
     private Rigidbody rb;
     [HideInInspector] public bool isAttracted;
     [HideInInspector] public float attractForce;
@@ -21,6 +24,7 @@ public class Movable : MonoBehaviour
     public Vector2 randomScaleRange;
 
     private Objective currentObjective;
+    private bool isAttractedObjective = false;
 
     void Start()
     {
@@ -37,10 +41,19 @@ public class Movable : MonoBehaviour
     void Update()
     {
         if (isAttracted)
+        {
             rb.AddForce((player.transform.position - transform.position).normalized * attractForce, ForceMode.Impulse);
+        }
 
         if (isAbsorbed)
+        {
             transform.position = player.transform.position;
+        }
+
+        if (isAttractedObjective)
+        {
+            rb.AddForce((currentObjective.transform.position - transform.position).normalized, ForceMode.Impulse);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -94,12 +107,13 @@ public class Movable : MonoBehaviour
         Vector3 dir = -player.transform.position.normalized;
         Vector3 random = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         rb.AddForce(dir * 30 + random * 8, ForceMode.Impulse);
-        StartCoroutine(EnableCollider());
+        GetComponent<Collider>().enabled = true;
+        //StartCoroutine(EnableCollider());
     }
 
-    private IEnumerator EnableCollider()
+    public IEnumerator EnableCollider()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
         GetComponent<Collider>().enabled = true;      
     }
 
@@ -111,14 +125,15 @@ public class Movable : MonoBehaviour
 
     public void OnEnterObjective(Objective o)
     {
-        
+        isAttractedObjective = true;
         rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        //transform.position = o.gameObject.transform.position;
+        //rb.angularVelocity = Vector3.zero;
+        currentObjective = o;
     }
 
     public void OnExitObjective(Objective o)
     {
-        
+        isAttractedObjective = false;
+        currentObjective = null;
     }
 }
