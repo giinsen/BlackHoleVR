@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     public OVRHand hand;
     public GameObject controller;
     public GameObject cam;
+    public float distanceFromCenter;
     public float moveSpeed;
     public float offsetUp;
+    public float movablesBeforeEjection;
 
     private bool canAttract = false;
 
@@ -24,7 +26,8 @@ public class Player : MonoBehaviour
     private bool ejectionPhase = false;
 
     public float attractForce;
-    
+    public AnimationCurve attractCurve;
+
     private PlayerModel playerModel;
 
     public float durationAnimationBeforeEjection;
@@ -42,7 +45,7 @@ public class Player : MonoBehaviour
         {
             Vector3 h = controller.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
             Vector3 v = (h - cam.transform.position).normalized;
-            transform.position = Vector3.Lerp(transform.position, v * 29, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
         }
         
         //TEMPORAIRE
@@ -62,19 +65,18 @@ public class Player : MonoBehaviour
             {
                 if (!m.isAttracted)
                 {
-                    m.attractForce = attractForce;
                     m.StartAttraction();
                 }
             }
         }
 
-        if (movablesAbsorbed.Count >= 10 && !ejectionPhase)
+        if (movablesAbsorbed.Count >= movablesBeforeEjection && !ejectionPhase)
         {
             EjectMovables();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnAttractZoneEnter(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
         if (m == null) return;
@@ -83,7 +85,7 @@ public class Player : MonoBehaviour
             movablesToAttract.Add(m);
     }
     
-    private void OnTriggerExit(Collider other)
+    public void OnAttractZoneExit(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
         if (m == null) return;

@@ -9,9 +9,8 @@ public class Movable : MonoBehaviour
     public MovableType movableType;
 
     private Rigidbody rb;
-    [HideInInspector] public bool isAttracted;
-    [HideInInspector] public float attractForce;
     [HideInInspector] public Player player;
+    [HideInInspector] public bool isAttracted;
 
     private bool isAbsorbed = false;
     private bool isUsingGravity;
@@ -25,6 +24,7 @@ public class Movable : MonoBehaviour
 
     private Objective currentObjective;
     private bool isAttractedObjective = false;
+    
 
     void Start()
     {
@@ -42,7 +42,9 @@ public class Movable : MonoBehaviour
     {
         if (isAttracted)
         {
-            rb.AddForce((player.transform.position - transform.position).normalized * attractForce, ForceMode.Impulse);
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            Vector3 force = (player.transform.position - transform.position).normalized * player.attractForce * player.attractCurve.Evaluate(Mathf.Clamp01(distance / player.distanceFromCenter));
+            rb.AddForce(force, ForceMode.Impulse);
         }
 
         if (isAbsorbed)
@@ -52,7 +54,7 @@ public class Movable : MonoBehaviour
 
         if (isAttractedObjective)
         {
-            rb.AddForce((currentObjective.transform.position - transform.position).normalized, ForceMode.Impulse);
+            rb.AddForce((currentObjective.transform.position - transform.position).normalized * currentObjective.attractForce, ForceMode.Impulse);
         }
     }
 

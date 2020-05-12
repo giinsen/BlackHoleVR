@@ -121,6 +121,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21943614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21943615}
+  - component: {fileID: 21943618}
+  - component: {fileID: 21943617}
+  - component: {fileID: 21943616}
+  m_Layer: 0
+  m_Name: AttractZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &21943615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21943614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.0079}
+  m_LocalScale: {x: 6.728351, y: 18.244007, z: 9.752554}
+  m_Children: []
+  m_Father: {fileID: 1777495613}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &21943616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21943614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ebbf2ed94336f4db25f40cb0b66df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &21943617
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21943614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 06aa01f6dd9fd824589c0d366e29dd98, type: 3}
+--- !u!33 &21943618
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21943614}
+  m_Mesh: {fileID: 2534964839176971238, guid: 06aa01f6dd9fd824589c0d366e29dd98, type: 3}
 --- !u!1001 &38260764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5954,7 +6021,7 @@ Transform:
   - {fileID: 247318456}
   - {fileID: 1470010191}
   m_Father: {fileID: 1777495613}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229087561
 GameObject:
@@ -13460,10 +13527,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777495612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: 0, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1916091403}
+  - {fileID: 21943615}
   - {fileID: 220956600}
   - {fileID: 1920799437}
   m_Father: {fileID: 0}
@@ -13484,9 +13552,44 @@ MonoBehaviour:
   hand: {fileID: 184190034}
   controller: {fileID: 1910506744}
   cam: {fileID: 1206787206}
+  distanceFromCenter: 29
   moveSpeed: 2
-  offsetUp: 0.3
-  attractForce: 0.25
+  offsetUp: 0.2
+  movablesBeforeEjection: 10
+  attractForce: 0.4
+  attractCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0019378662
+      value: 0.004425049
+      inSlope: 0.58682615
+      outSlope: 0.58682615
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75287807
+      value: 0.44509637
+      inSlope: 1.4219916
+      outSlope: 1.4219916
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.074543566
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.28207672
+      outSlope: 0.28207672
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13824971
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   durationAnimationBeforeEjection: 4
 --- !u!65 &1777495615
 BoxCollider:
@@ -13497,7 +13600,7 @@ BoxCollider:
   m_GameObject: {fileID: 1777495612}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 5.937544, y: 32.997784, z: 26.413431}
   m_Center: {x: 0.10464001, y: -0.5750599, z: -12.358108}
@@ -13783,6 +13886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movablesToAttract: 01000000
+  attractForce: 1.5
 --- !u!4 &1856837350
 Transform:
   m_ObjectHideFlags: 0
@@ -14455,7 +14559,7 @@ Transform:
   - {fileID: 69796095}
   - {fileID: 1161093503}
   m_Father: {fileID: 1777495613}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1948829164
 PrefabInstance:
@@ -14741,6 +14845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movablesToAttract: 00000000
+  attractForce: 1
 --- !u!4 &1985496283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5544442210344236183, guid: 608b3d46bf8daec44b3c0583e71917ce,

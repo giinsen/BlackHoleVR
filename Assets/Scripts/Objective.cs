@@ -5,6 +5,7 @@ using UnityEngine;
 public class Objective : MonoBehaviour
 {
     public List<Movable.MovableType> movablesToAttract;
+    public float attractForce;
     private void OnTriggerEnter(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
