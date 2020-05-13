@@ -13286,8 +13286,9 @@ MonoBehaviour:
   cam: {fileID: 1206787206}
   distanceFromCenter: 29
   moveSpeed: 2
-  offsetUp: 0.2
+  offsetUp: 0.05
   movablesBeforeEjection: 10
+  delayBetweenExplusion: 0.2
   attractForce: 0.4
   attractCurve:
     serializedVersion: 2

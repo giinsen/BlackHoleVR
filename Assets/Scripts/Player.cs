@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     public float offsetUp;
     public float movablesBeforeEjection;
+    public float delayBetweenExplusion;
 
     private bool canAttract = false;
     private bool canMove = false;
@@ -154,8 +155,8 @@ public class Player : MonoBehaviour
             foreach (Movable m in tmp)
             {
                 m.EjectFromPlayer();
-                playerModel.AnimationEjectMovable(0.2f);
-                yield return new WaitForSeconds(0.2f);
+                playerModel.AnimationEjectMovable(delayBetweenExplusion);
+                yield return new WaitForSeconds(delayBetweenExplusion);
             }
 
             movablesAbsorbed.RemoveRange(0, tmp.Count);
