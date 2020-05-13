@@ -12,15 +12,17 @@ public struct Gesture
 }
 
 public class GestureDetector : MonoBehaviour
-{
+{   
     public float threshold;
     public UnityEvent onNoGesture;
     private bool onNoGestureInvoked = true;
+    
     public OVRSkeleton skeleton;
     public List<Gesture> gestures;
     private List<OVRBone> fingerBones;
     private Gesture previousGesture;
 
+    
     private void Awake()
     {
         
@@ -34,12 +36,10 @@ public class GestureDetector : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(skeleton.Bones.Count);
         if (Input.GetKeyDown(KeyCode.Space))
             SaveGesture();
 
         Gesture currentGesture = Recognize();
-        Debug.Log(currentGesture.name);
   
         if (!currentGesture.Equals(new Gesture()) && !currentGesture.Equals(previousGesture))
         {
@@ -49,7 +49,7 @@ public class GestureDetector : MonoBehaviour
             onNoGestureInvoked = false;
         }
 
-        if (currentGesture.Equals(new Gesture()) && !onNoGestureInvoked)
+        if (currentGesture.Equals(new Gesture()) && !onNoGestureInvoked && onNoGesture != null)
         {
             //no current gesture
             onNoGesture.Invoke();

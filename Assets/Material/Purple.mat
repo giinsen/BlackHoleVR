@@ -21,10 +21,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Purple
-  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: DR_CEL_EXTRA_ON DR_RIM_ON DR_VERTEX_COLORS_ON _CELPRIMARYMODE_SINGLE
-    _EMISSION _GLOSSYREFLECTIONS_OFF _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
-  m_LightmapFlags: 2
+    _GLOSSYREFLECTIONS_OFF _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -105,7 +105,7 @@ Material:
     - _Flatness: 1
     - _FlatnessExtra: 1
     - _GlossMapScale: 0
-    - _Glossiness: 0
+    - _Glossiness: 0.42
     - _GlossyReflections: 0
     - _GradientAngle: 0
     - _GradientCenterX: 0
@@ -113,7 +113,7 @@ Material:
     - _GradientEnabled: 0
     - _GradientSize: 10
     - _LightContribution: 0
-    - _Metallic: 0
+    - _Metallic: 0.022
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -141,7 +141,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.1822268, g: 0.47498554, b: 0.8584906, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.9614239, a: 1}
     - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimCurve: {r: 0.50980395, g: 0.90588236, b: 0.9607843, a: 1}
     - _ColorDimExtra: {r: 0, g: 0, b: 0, a: 0.7529412}

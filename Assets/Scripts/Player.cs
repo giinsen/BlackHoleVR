@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float movablesBeforeEjection;
 
     private bool canAttract = false;
+    private bool canMove = false;
 
     private List<Movable> movablesToAttract = new List<Movable>();
     private List<Movable> movablesAbsorbed = new List<Movable>();
@@ -41,8 +42,8 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(transform.position);
 
-        if (hand.IsTracked)
-        {
+        if (hand.IsTracked && canMove)
+        {            
             Vector3 h = controller.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
             Vector3 v = (h - cam.transform.position).normalized;
             transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
@@ -51,11 +52,11 @@ public class Player : MonoBehaviour
         //TEMPORAIRE
         if (hand.IsTracked && OVRInput.GetDown(OVRInput.Button.One) && !ejectionPhase)//A
         {
-            Attract();
+            OnHandClosed();
         }
         if (hand.IsTracked && OVRInput.GetUp(OVRInput.Button.One) && !ejectionPhase)//A
         {
-            StopAttract();
+            OnHandOpened();
         }
         //TEMPORAIRE STOP
 
@@ -97,21 +98,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Attract()
+    public void OnHandClosed()
     {
+        canMove = true;
         canAttract = true;
         state = State.ATTRACT;
     }
 
-    public void StopAttract()
+    public void OnHandOpened()
     {
+        canMove = false;
         canAttract = false;
+        StopAllAttraction();
+        if (!ejectionPhase)
+            state = State.NEUTRAL;
+    }
+
+    public void StopAllAttraction()
+    {
         foreach (Movable m in movablesToAttract)
         {
             m.StopAttraction();
         }
-        if (!ejectionPhase)
-            state = State.NEUTRAL;
     }
 
     public void Absorbtion(Movable movable)
@@ -135,7 +143,7 @@ public class Player : MonoBehaviour
     {
         ejectionPhase = true;
         playerModel.GetComponent<Collider>().enabled = false;
-        StopAttract();
+        OnHandOpened();
 
         yield return StartCoroutine(AnimationBeforeEjection());
 

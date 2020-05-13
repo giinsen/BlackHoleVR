@@ -5,6 +5,7 @@ using UnityEngine;
 // coucou lol
 public class PlayerModel : MonoBehaviour
 {
+    public MeshRenderer meshRenderer;
     public Material neutralMaterial;
     public Material attractMaterial;
     public Material ejectMaterial;
@@ -49,7 +50,7 @@ public class PlayerModel : MonoBehaviour
 
     public void SetMaterial(Material m)
     {
-        GetComponent<MeshRenderer>().material = m;
+        meshRenderer.material = m;
     }
 
     public void SetParticles(Player.State state)
