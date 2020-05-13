@@ -18,6 +18,8 @@ public class ClapDetector : MonoBehaviour
     private Vector3 prevPosLeft;
     private Vector3 leftHandVelocity;
 
+    public GameObject clapFeedback;
+
     private bool clapInvoked = true;
     void Start()
     {
@@ -44,7 +46,8 @@ public class ClapDetector : MonoBehaviour
                 && rightHandVelocity.x < -0.3f && leftHandVelocity.x > 0.3f)
             {
                 //invokeclap
-                Debug.Log("clap");
+                Debug.Log(rightHand.transform.position);
+                Instantiate(clapFeedback, rightHand.transform.position, Quaternion.identity);
                 clapInvoked = true;
             }
 
