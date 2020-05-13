@@ -71,10 +71,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (movablesAbsorbed.Count >= movablesBeforeEjection && !ejectionPhase)
-        {
-            EjectMovables();
-        }
+        //if (movablesAbsorbed.Count >= movablesBeforeEjection && !ejectionPhase)
+        //{
+        //    EjectMovables();
+        //}
     }
 
     public void OnAttractZoneEnter(Collider other)

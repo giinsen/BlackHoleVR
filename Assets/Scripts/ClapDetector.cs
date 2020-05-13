@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClapDetector : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ClapDetector : MonoBehaviour
     private Vector3 prevPosLeft;
     private Vector3 leftHandVelocity;
 
+    public UnityEvent onClap;
     public GameObject clapFeedback;
 
     private bool clapInvoked = true;
@@ -39,14 +41,12 @@ public class ClapDetector : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(handVelocity);
         if (rightHand.IsTracked && leftHand.IsTracked)
         {
             if (!clapInvoked && Vector3.Distance(rightHand.transform.position, leftHand.transform.position) <= thresholdDistance
                 && rightHandVelocity.x < -0.3f && leftHandVelocity.x > 0.3f)
             {
-                //invokeclap
-                Debug.Log(rightHand.transform.position);
+                onClap.Invoke();
                 Instantiate(clapFeedback, rightHand.transform.position, Quaternion.identity);
                 clapInvoked = true;
             }
