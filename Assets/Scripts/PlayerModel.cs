@@ -10,6 +10,7 @@ public class PlayerModel : MonoBehaviour
     public Material attractMaterial;
     public Material ejectMaterial;
 
+    public GameObject particlesNeutral;
     public GameObject particlesAttract;
     public GameObject particlesEject;
     void Start()
@@ -44,7 +45,7 @@ public class PlayerModel : MonoBehaviour
                 SetMaterial(ejectMaterial);
                 break;
         }
-        SetParticles(state);
+        SetElements(state);
     }
 
 
@@ -53,19 +54,22 @@ public class PlayerModel : MonoBehaviour
         meshRenderer.material = m;
     }
 
-    public void SetParticles(Player.State state)
+    public void SetElements(Player.State state)
     {
         switch (state)
         {
             case Player.State.NEUTRAL:
+                particlesNeutral.SetActive(true);
                 particlesAttract.SetActive(false);
                 particlesEject.SetActive(false);
                 break;
             case Player.State.ATTRACT:
+                particlesNeutral.SetActive(false);
                 particlesAttract.SetActive(true);
                 particlesEject.SetActive(false);
                 break;
             case Player.State.EJECT:
+                particlesNeutral.SetActive(false);
                 particlesAttract.SetActive(false);
                 particlesEject.SetActive(true);
                 break;

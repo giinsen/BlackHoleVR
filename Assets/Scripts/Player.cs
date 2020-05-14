@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private bool canMove = false;
 
     private List<Movable> movablesToAttract = new List<Movable>();
-    private List<Movable> movablesAbsorbed = new List<Movable>();
+    [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
 
 
     private bool ejectionPhase = false;
@@ -136,6 +136,8 @@ public class Player : MonoBehaviour
 
     public void EjectMovables()
     {
+        if (ejectionPhase) 
+            return;
         StartCoroutine(_EjectMovables());
         state = State.EJECT;
     }
