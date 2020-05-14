@@ -5,6 +5,7 @@ using UnityEngine;
 public class Planets : MonoBehaviour
 {
     private Player player;
+    private PlayerModel playerModel;
     public GameObject planetGravity;
     public GameObject planetNoGravity;
 
@@ -14,11 +15,12 @@ public class Planets : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<Player>();
+        playerModel = player.GetComponentInChildren<PlayerModel>();
     }
 
     void Update()
     {
-        transform.Rotate(player.transform.forward, Time.deltaTime * rotationSpeed);
+        transform.RotateAround(playerModel.transform.forward, Time.deltaTime * rotationSpeed);
     }
 
     private void OnEnable()

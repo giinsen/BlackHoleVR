@@ -10765,7 +10765,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -13041,7 +13041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetGravity: {fileID: 1135449340}
   planetNoGravity: {fileID: 8593980928757241635}
-  rotationSpeed: 80
+  rotationSpeed: 2.5
 --- !u!4 &1646267801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626165533372374215, guid: 48d47e00f05f8c44f8fbc8f0e9018fb4,
@@ -15955,7 +15955,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
