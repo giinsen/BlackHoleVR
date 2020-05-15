@@ -101,16 +101,17 @@ public class Movable : MonoBehaviour
         transform.localScale = startScale;
     }
 
-    public void EjectFromPlayer()
+    public void EjectFromPlayer(Vector3 direction)
     {
         isAbsorbed = false;
         GetComponent<MeshRenderer>().enabled = true;
         SetUseGravity(true);
-        Vector3 dir = -player.transform.position.normalized;
+        //Vector3 dir = -player.transform.position.normalized;
         Vector3 random = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        rb.AddForce(dir * 30 + random * 8, ForceMode.Impulse);
         GetComponent<Collider>().enabled = true;
-        //StartCoroutine(EnableCollider());
+
+        rb.AddForce(direction * player.explusionForce + random * player.randomEjectionDirection, ForceMode.Impulse);
+
     }
 
     public IEnumerator EnableCollider()

@@ -12,30 +12,39 @@ public class Player : MonoBehaviour
     public OVRHand hand;
     public GameObject controller;
     public GameObject cam;
+
+    [Header("Black Hole Position")]
     public float distanceFromCenter;
     public float moveSpeed;
     public float offsetUp;
+
+    [Header("Ejection")]
     public float movablesBeforeEjection;
     public float delayBetweenExplusion;
+    public float randomEjectionDirection;
+    public float explusionForce;
+    public float durationAnimationBeforeEjection;
+    private bool ejectionPhase = false;
+
+    [Header("Attraction")]
+    public float attractForce;
+    public AnimationCurve attractCurve;
+
+    [HideInInspector] private List<Movable> movablesToAttract = new List<Movable>();
+    [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
 
     private bool canAttract = false;
     private bool canMove = false;
 
-    private List<Movable> movablesToAttract = new List<Movable>();
-    [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
-
-
-    private bool ejectionPhase = false;
-
-    public float attractForce;
-    public AnimationCurve attractCurve;
-
+   
     private PlayerModel playerModel;
+    private Planets planets;
 
-    public float durationAnimationBeforeEjection;
+    
     void Start()
     {
         playerModel = GetComponentInChildren<PlayerModel>();
+        planets = GetComponentInChildren<Planets>();
         state = State.NEUTRAL;
     }
 
@@ -156,7 +165,17 @@ public class Player : MonoBehaviour
             List<Movable> tmp = new List<Movable>(movablesAbsorbed);
             foreach (Movable m in tmp)
             {
-                m.EjectFromPlayer();
+                Vector3 direction = new Vector3();
+                switch (m.movableType)
+                {
+                    case Movable.MovableType.GRAVITY:
+                        direction = planets.planetGravityDirection;
+                        break;
+                    case Movable.MovableType.NOGRAVITY:
+                        direction = planets.planetNoGravityDirection;
+                        break;
+                }
+                m.EjectFromPlayer(direction);
                 playerModel.AnimationEjectMovable(delayBetweenExplusion);
                 yield return new WaitForSeconds(delayBetweenExplusion);
             }
@@ -165,7 +184,7 @@ public class Player : MonoBehaviour
             if (movablesAbsorbed.Count == 0)
                 movablesAbsorbedEmpty = true;
         }
-        
+
         movablesAbsorbed.Clear();
         ejectionPhase = false;
         playerModel.GetComponent<Collider>().enabled = true;

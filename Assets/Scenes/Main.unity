@@ -5920,7 +5920,7 @@ Transform:
   - {fileID: 1470010191}
   - {fileID: 512163256}
   m_Father: {fileID: 1777495613}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229087561
 GameObject:
@@ -10319,10 +10319,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1640748268}
+  m_Children: []
   m_Father: {fileID: 1777495613}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1091433815
 PrefabInstance:
@@ -13018,14 +13017,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640748267}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1135449341}
   - {fileID: 8593980928757241632}
-  m_Father: {fileID: 1090063869}
-  m_RootOrder: 0
+  m_Father: {fileID: 1777495613}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1640748269
 MonoBehaviour:
@@ -13041,6 +13040,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetGravity: {fileID: 1135449340}
   planetNoGravity: {fileID: 8593980928757241635}
+  planetGravityDirection: {x: 0, y: 0, z: 0}
+  planetNoGravityDirection: {x: 0, y: 0, z: 0}
   rotationSpeed: 2.5
 --- !u!4 &1646267801 stripped
 Transform:
@@ -13529,6 +13530,7 @@ Transform:
   m_Children:
   - {fileID: 1916091403}
   - {fileID: 21943615}
+  - {fileID: 1640748268}
   - {fileID: 1090063869}
   - {fileID: 220956600}
   - {fileID: 1920799437}
@@ -13550,11 +13552,13 @@ MonoBehaviour:
   hand: {fileID: 184190034}
   controller: {fileID: 1910506744}
   cam: {fileID: 1206787206}
-  distanceFromCenter: 31
+  distanceFromCenter: 29
   moveSpeed: 2
   offsetUp: 0.3
   movablesBeforeEjection: 10
   delayBetweenExplusion: 0.2
+  randomEjectionDirection: 1
+  explusionForce: 25
   movablesAbsorbed: []
   attractForce: 0.6
   attractCurve:
@@ -14288,6 +14292,7 @@ MonoBehaviour:
   particlesNeutral: {fileID: 1090063868}
   particlesAttract: {fileID: 220956599}
   particlesEject: {fileID: 1920799436}
+  planets: {fileID: 1640748267}
 --- !u!4 &1918727094 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626165533372374215, guid: 48d47e00f05f8c44f8fbc8f0e9018fb4,
@@ -14325,7 +14330,7 @@ Transform:
   - {fileID: 69796095}
   - {fileID: 1161093503}
   m_Father: {fileID: 1777495613}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1948829164
 PrefabInstance:

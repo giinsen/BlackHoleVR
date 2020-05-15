@@ -13,6 +13,8 @@ public class PlayerModel : MonoBehaviour
     public GameObject particlesNeutral;
     public GameObject particlesAttract;
     public GameObject particlesEject;
+
+    public GameObject planets;
     void Start()
     {
         
@@ -46,6 +48,7 @@ public class PlayerModel : MonoBehaviour
                 break;
         }
         SetElements(state);
+        planets.GetComponent<Planets>().SetState(state);
     }
 
 
