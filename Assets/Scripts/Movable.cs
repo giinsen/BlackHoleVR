@@ -31,7 +31,9 @@ public class Movable : MonoBehaviour
         rb = GetComponentInChildren<Rigidbody>();
         player = GameObject.FindObjectOfType<Player>();
         isUsingGravity = rb.useGravity;
-        rb.AddForceAtPosition(Vector3.one * startForce, Vector3.zero);
+
+        Vector3 randomStartForce = new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        rb.AddForce(randomStartForce * startForce, ForceMode.Impulse);
 
         float randomScale = Random.Range(randomScaleRange.x, randomScaleRange.y);
         transform.localScale = new Vector3(randomScale, randomScale, randomScale);
@@ -77,6 +79,7 @@ public class Movable : MonoBehaviour
     public void StartAttraction()
     {
         SetUseGravity(false);
+        rb.velocity = rb.velocity * player.velocityMultiplierOnStartAttraction;
         rb.AddTorque(new Vector3(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)));
         isAttracted = true;
     }

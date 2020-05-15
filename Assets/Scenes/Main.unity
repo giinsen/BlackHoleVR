@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 21943614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: -3.0079}
-  m_LocalScale: {x: 6.728351, y: 19.254873, z: 9.752554}
+  m_LocalScale: {x: 6.728351, y: 10.890687, z: 9.752554}
   m_Children: []
   m_Father: {fileID: 1777495613}
   m_RootOrder: 1
@@ -13043,6 +13043,8 @@ MonoBehaviour:
   planetGravityDirection: {x: 0, y: 0, z: 0}
   planetNoGravityDirection: {x: 0, y: 0, z: 0}
   rotationSpeed: 2.5
+  scaleForOneObject: 0.05
+  maxScale: 1
 --- !u!4 &1646267801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626165533372374215, guid: 48d47e00f05f8c44f8fbc8f0e9018fb4,
@@ -13526,7 +13528,7 @@ Transform:
   m_GameObject: {fileID: 1777495612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 29}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.92489, y: 1, z: 1}
   m_Children:
   - {fileID: 1916091403}
   - {fileID: 21943615}
@@ -13559,8 +13561,9 @@ MonoBehaviour:
   delayBetweenExplusion: 0.2
   randomEjectionDirection: 1
   explusionForce: 25
-  movablesAbsorbed: []
+  durationAnimationBeforeEjection: 1
   attractForce: 0.6
+  velocityMultiplierOnStartAttraction: 0.1
   attractCurve:
     serializedVersion: 2
     m_Curve:
@@ -13594,7 +13597,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  durationAnimationBeforeEjection: 1
+  movablesAbsorbed: []
 --- !u!4 &1786036549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5544442210344236183, guid: 608b3d46bf8daec44b3c0583e71917ce,

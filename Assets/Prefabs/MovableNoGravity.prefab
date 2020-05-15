@@ -49,14 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movableType: 1
-  isAttracted: 0
-  attractForce: 0
   player: {fileID: 0}
+  isAttracted: 0
   canBeAttracted: 1
-  startForce: 200
-  domeCollisionForce: 7
+  startForce: 50
+  domeCollisionForce: 5
   domeCollisionParticles: {fileID: 0}
-  randomScaleRange: {x: 0.8, y: 1.2}
+  randomScaleRange: {x: 1, y: 1}
 --- !u!33 &2286012543074719100
 MeshFilter:
   m_ObjectHideFlags: 0

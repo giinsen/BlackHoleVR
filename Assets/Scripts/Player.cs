@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     [Header("Attraction")]
     public float attractForce;
+    public float velocityMultiplierOnStartAttraction;
     public AnimationCurve attractCurve;
 
     [HideInInspector] private List<Movable> movablesToAttract = new List<Movable>();
