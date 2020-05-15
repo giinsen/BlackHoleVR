@@ -9,8 +9,10 @@ public class Player : MonoBehaviour
     private State _state;
     private State state { get { return _state; } set { _state = value; playerModel.SetState(value); } }
 
-    public OVRHand hand;
-    public GameObject controller;
+    public OVRHand rightHand;
+    public OVRHand leftHand;
+    private OVRHand currentHand;
+    private OVRInput.Button currentButton;
     public GameObject cam;
 
     [Header("Black Hole Position")]
@@ -51,27 +53,37 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(transform.position);
-
-        if (hand.IsTracked && canMove)
-        {            
-            Vector3 h = controller.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
-            Vector3 v = (h - cam.transform.position).normalized;
-            transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
+        //detect currentHand
+        if (rightHand.IsTracked && OVRInput.GetDown(OVRInput.Button.One) && !OVRInput.Get(OVRInput.Button.Three))//A
+        {
+            currentHand = rightHand;
+            currentButton = OVRInput.Button.One;
+        }
+        if (leftHand.IsTracked && OVRInput.GetDown(OVRInput.Button.Three) && !OVRInput.Get(OVRInput.Button.One))//Y
+        {
+            currentHand = leftHand;
+            currentButton = OVRInput.Button.Three;
         }
         
-        //TEMPORAIRE
-        if (hand.IsTracked && OVRInput.GetDown(OVRInput.Button.One) && !ejectionPhase)//A
+        //call events on the currentHand
+        if (currentHand != null && currentHand.IsTracked && OVRInput.GetDown(currentButton) && !ejectionPhase)//A
         {
             OnHandClosed();
         }
-        if (hand.IsTracked && OVRInput.GetUp(OVRInput.Button.One) && !ejectionPhase)//A
+        if (currentHand != null && currentHand.IsTracked && OVRInput.GetUp(currentButton) && !ejectionPhase)//A
         {
             OnHandOpened();
         }
-        //TEMPORAIRE STOP
 
-        if (hand.IsTracked && canAttract && !ejectionPhase)
+        //move and attract
+        transform.rotation = Quaternion.LookRotation(transform.position);
+        if (currentHand != null && currentHand.IsTracked && canMove)
+        {
+            Vector3 h = currentHand.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
+            Vector3 v = (h - cam.transform.position).normalized;
+            transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
+        }
+        if (currentHand != null && currentHand.IsTracked && canAttract && !ejectionPhase)
         {
             foreach (Movable m in movablesToAttract)
             {
@@ -81,11 +93,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        //if (movablesAbsorbed.Count >= movablesBeforeEjection && !ejectionPhase)
-        //{
-        //    EjectMovables();
-        //}
     }
 
     public void OnAttractZoneEnter(Collider other)
@@ -155,7 +162,8 @@ public class Player : MonoBehaviour
     private IEnumerator _EjectMovables()
     {
         ejectionPhase = true;
-        playerModel.GetComponent<Collider>().enabled = false;
+        playerModel.GetComponents<Collider>()[0].enabled = false;
+        playerModel.GetComponents<Collider>()[1].enabled = false;
         OnHandOpened();
 
         yield return StartCoroutine(AnimationBeforeEjection());
@@ -188,7 +196,8 @@ public class Player : MonoBehaviour
 
         movablesAbsorbed.Clear();
         ejectionPhase = false;
-        playerModel.GetComponent<Collider>().enabled = true;
+        playerModel.GetComponents<Collider>()[0].enabled = true;
+        playerModel.GetComponents<Collider>()[1].enabled = true;
         state = State.NEUTRAL;
     }
 
