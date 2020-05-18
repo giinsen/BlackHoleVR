@@ -15,9 +15,11 @@ public class PlayerModel : MonoBehaviour
     public GameObject particlesEject;
 
     public GameObject planets;
-    void Start()
+
+    private Player player;
+    void Awake()
     {
-        
+        player = GetComponentInParent<Player>();
     }
 
     void Update()
@@ -29,10 +31,28 @@ public class PlayerModel : MonoBehaviour
     {
         Movable m = collision.gameObject.GetComponent<Movable>();
         if (m == null) return;
-        GetComponentInParent<Player>().Absorbtion(m);
+        player.Absorbtion(m);
         m.Absorption();
     }
 
+    public void SetScale(Player.ScaleState scaleState)
+    {
+        switch (scaleState)
+        {
+            case Player.ScaleState.SMALL:
+                player.transform.DOScale(new Vector3(player.smallScale, player.smallScale, player.smallScale), 0.3f);
+                break;
+            case Player.ScaleState.NORMAL:
+                player.transform.DOScale(new Vector3(player.normalScale, player.normalScale, player.normalScale), 0.3f);
+                break;
+            case Player.ScaleState.BIG:
+                player.transform.DOScale(new Vector3(player.bigScale, player.bigScale, player.bigScale), 0.3f);
+                break;
+            case Player.ScaleState.HUGE:
+                player.transform.DOScale(new Vector3(player.hugeScale, player.hugeScale, player.hugeScale), 0.3f);
+                break;
+        }
+    }
     public void SetState(Player.State state)
     {
         switch (state)

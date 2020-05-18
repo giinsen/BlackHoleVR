@@ -13739,7 +13739,11 @@ MonoBehaviour:
   randomEjectionDirection: 1
   explusionForce: 25
   durationAnimationBeforeEjection: 1
-  attractForce: 0.6
+  attractionForceArray:
+  - 0.2
+  - 0.6
+  - 0.8
+  - 1
   velocityMultiplierOnStartAttraction: 0.1
   attractCurve:
     serializedVersion: 2
@@ -13774,6 +13778,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  attractForce: 0.6
+  distanceChangeScale: 0.08
+  delayStartScale: 2
+  smallScale: 0.5
+  normalScale: 1
+  bigScale: 1.5
+  hugeScale: 2.5
   movablesAbsorbed: []
 --- !u!4 &1786036549 stripped
 Transform:

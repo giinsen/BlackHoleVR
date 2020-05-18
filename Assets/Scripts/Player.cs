@@ -1,10 +1,14 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public enum ScaleState { SMALL, NORMAL, BIG, HUGE }
+    private ScaleState _scaleState;
+    private ScaleState scaleState { get { return _scaleState; } set { _scaleState = value; playerModel.SetScale(value); } }
     public enum State { NEUTRAL, ATTRACT, EJECT }
     private State _state;
     private State state { get { return _state; } set { _state = value; playerModel.SetState(value); } }
@@ -19,6 +23,7 @@ public class Player : MonoBehaviour
     public float distanceFromCenter;
     public float moveSpeed;
     public float offsetUp;
+    private bool canMove = false;
 
     [Header("Ejection")]
     public float movablesBeforeEjection;
@@ -29,17 +34,26 @@ public class Player : MonoBehaviour
     private bool ejectionPhase = false;
 
     [Header("Attraction")]
-    public float attractForce;
+    public float[] attractionForceArray;
     public float velocityMultiplierOnStartAttraction;
     public AnimationCurve attractCurve;
+    private bool canAttract = false;
+    [HideInInspector] public float attractForce;
+
+    [Header("Bigger/Smaller")]
+    public float distanceChangeScale;
+    public float delayStartScale;
+    private float delayStartScaleTmp;
+    public float smallScale;
+    public float normalScale;
+    public float bigScale;
+    public float hugeScale;    
+    private bool scaleInProgress = false;
+    private float startDistanceBetweenHands = 0;
 
     [HideInInspector] private List<Movable> movablesToAttract = new List<Movable>();
     [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
 
-    private bool canAttract = false;
-    private bool canMove = false;
-
-   
     private PlayerModel playerModel;
     private Planets planets;
 
@@ -49,6 +63,7 @@ public class Player : MonoBehaviour
         playerModel = GetComponentInChildren<PlayerModel>();
         planets = GetComponentInChildren<Planets>();
         state = State.NEUTRAL;
+        scaleState = ScaleState.NORMAL;
     }
 
     void Update()
@@ -64,6 +79,40 @@ public class Player : MonoBehaviour
             currentHand = leftHand;
             currentButton = OVRInput.Button.Three;
         }
+
+        //scale player
+        if (OVRInput.Get(OVRInput.Button.One) && OVRInput.Get(OVRInput.Button.Three))
+        {
+            if (!scaleInProgress)
+            {
+                delayStartScaleTmp += Time.deltaTime;
+                if (delayStartScaleTmp >= delayStartScale)
+                {
+                    scaleInProgress = true;
+                    startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
+                }                
+            }           
+        }
+        else if (scaleInProgress)
+        {
+            delayStartScaleTmp = 0;
+            scaleInProgress = false;
+        }
+
+        if (scaleInProgress)
+        {
+            if (Vector3.Distance(leftHand.transform.position, rightHand.transform.position) > startDistanceBetweenHands + distanceChangeScale)
+            {
+                startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
+                SetScaleState((int)scaleState + 1);
+            }    
+            else if(Vector3.Distance(leftHand.transform.position, rightHand.transform.position) < startDistanceBetweenHands - distanceChangeScale)
+            {
+                startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
+                SetScaleState((int)scaleState - 1);
+            }
+        }
+            
         
         //call events on the currentHand
         if (currentHand != null && currentHand.IsTracked && OVRInput.GetDown(currentButton) && !ejectionPhase)//A
@@ -93,6 +142,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetScaleState(int scaleState)
+    {
+        if (scaleState < 0 || scaleState >= Enum.GetNames(typeof(ScaleState)).Length) return;
+        this.scaleState = (ScaleState)scaleState;
+        attractForce = attractionForceArray[scaleState];
     }
 
     public void OnAttractZoneEnter(Collider other)
