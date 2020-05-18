@@ -16,18 +16,21 @@ public class HandController : MonoBehaviour
     public Material neutralMaterial;
     public Material controlPositionMaterial;
     public Material controlScaleMaterial;
+    private Material currentMaterial;
 
     void Start()
     {
         player = FindObjectOfType<Player>();
         delayStartScale = player.delayStartScale;
         mesh = GetComponent<SkinnedMeshRenderer>();
+        currentMaterial = neutralMaterial;
     }
 
     void Update()
     {
-        
+        mesh.materials[0] = currentMaterial;
     }
+
 
     public void FillControlHand(float delayStartScaleTmp)
     {
@@ -35,14 +38,14 @@ public class HandController : MonoBehaviour
         delayStartScaleImage2.fillAmount = delayStartScaleTmp / delayStartScale;
     }
 
-    public void ActiveControlHand()
+    public void ActiveControlScaleHand()
     {
-        mesh.material = controlScaleMaterial;
+        currentMaterial = controlScaleMaterial;
     }
 
     public void ResetFillControlHand()
     {
-        mesh.material = neutralMaterial;
+        currentMaterial = neutralMaterial;
         delayStartScaleImage.fillAmount = 0;
         delayStartScaleImage2.fillAmount = 0;
     }

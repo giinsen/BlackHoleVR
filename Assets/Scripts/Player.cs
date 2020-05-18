@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         }
 
         //scale player
-        if (OVRInput.Get(OVRInput.Button.One) && OVRInput.Get(OVRInput.Button.Three))
+        if (OVRInput.Get(OVRInput.Button.One) && OVRInput.Get(OVRInput.Button.Three)) //les deux mains fermés
         {
             if (!scaleInProgress)
             {
@@ -100,16 +100,16 @@ public class Player : MonoBehaviour
                 if (delayStartScaleTmp >= delayStartScale)
                 {
                     if (currentHand == rightHand)
-                        leftHandController.ActiveControlHand();
+                        leftHandController.ActiveControlScaleHand();
                     else
-                        rightHandController.ActiveControlHand();
+                        rightHandController.ActiveControlScaleHand();
 
                     scaleInProgress = true;
                     startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
                 }                
             }           
         }
-        else
+        else if (scaleInProgress || delayStartScaleTmp != 0) //1ere frame ou les deux mains ne sont plus ouvertes
         {
             delayStartScaleTmp = 0;
             rightHandController.ResetFillControlHand();
@@ -119,7 +119,6 @@ public class Player : MonoBehaviour
 
         if (scaleInProgress && rightHand.IsTracked && leftHand.IsTracked)
         {
-
             if (Vector3.Distance(leftHand.transform.position, rightHand.transform.position) > startDistanceBetweenHands + distanceChangeScale)
             {
                 startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);

@@ -6066,7 +6066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &229087562
 Transform:
   m_ObjectHideFlags: 0
@@ -14018,15 +14018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_RenderingPath
@@ -16075,7 +16075,7 @@ MonoBehaviour:
   canvas: {fileID: 0}
   delayStartScaleImage: {fileID: 880560356}
   delayStartScaleImage2: {fileID: 1600107536}
-  neutralMaterial: {fileID: 0}
+  neutralMaterial: {fileID: 2100000, guid: a0c3f6b71c719214aa754cf0e0522c5c, type: 2}
   controlPositionMaterial: {fileID: 0}
   controlScaleMaterial: {fileID: 2100000, guid: 41bad8a0ec3d8e44b89e2990d90d9c53,
     type: 2}
@@ -16334,7 +16334,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ff063c5ec8007134094ad4d377863aa4, type: 2}
+  - {fileID: 2100000, guid: a0c3f6b71c719214aa754cf0e0522c5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16639,7 +16639,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9939ae997dba7a4099cea2510656c75, type: 2}
+  - {fileID: 2100000, guid: 8053607be96124a4b933c885adb7f6a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
