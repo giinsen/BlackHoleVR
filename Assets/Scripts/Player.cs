@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class Player : MonoBehaviour
     private State state { get { return _state; } set { _state = value; playerModel.SetState(value); } }
 
     public OVRHand rightHand;
+    private HandController rightHandController;
     public OVRHand leftHand;
+    private HandController leftHandController;
     private OVRHand currentHand;
     private OVRInput.Button currentButton;
     public GameObject cam;
@@ -64,6 +67,8 @@ public class Player : MonoBehaviour
         planets = GetComponentInChildren<Planets>();
         state = State.NEUTRAL;
         scaleState = ScaleState.NORMAL;
+        rightHandController = rightHand.GetComponent<HandController>();
+        leftHandController = leftHand.GetComponent<HandController>();
     }
 
     void Update()
@@ -86,26 +91,40 @@ public class Player : MonoBehaviour
             if (!scaleInProgress)
             {
                 delayStartScaleTmp += Time.deltaTime;
+
+                if (currentHand == rightHand)
+                    leftHandController.FillControlHand(delayStartScaleTmp);
+                else
+                    rightHandController.FillControlHand(delayStartScaleTmp);
+               
                 if (delayStartScaleTmp >= delayStartScale)
                 {
+                    if (currentHand == rightHand)
+                        leftHandController.ActiveControlHand();
+                    else
+                        rightHandController.ActiveControlHand();
+
                     scaleInProgress = true;
                     startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
                 }                
             }           
         }
-        else if (scaleInProgress)
+        else
         {
             delayStartScaleTmp = 0;
+            rightHandController.ResetFillControlHand();
+            leftHandController.ResetFillControlHand();
             scaleInProgress = false;
         }
 
-        if (scaleInProgress)
+        if (scaleInProgress && rightHand.IsTracked && leftHand.IsTracked)
         {
+
             if (Vector3.Distance(leftHand.transform.position, rightHand.transform.position) > startDistanceBetweenHands + distanceChangeScale)
             {
                 startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
                 SetScaleState((int)scaleState + 1);
-            }    
+            }
             else if(Vector3.Distance(leftHand.transform.position, rightHand.transform.position) < startDistanceBetweenHands - distanceChangeScale)
             {
                 startDistanceBetweenHands = Vector3.Distance(leftHand.transform.position, rightHand.transform.position);
@@ -115,11 +134,11 @@ public class Player : MonoBehaviour
             
         
         //call events on the currentHand
-        if (currentHand != null && currentHand.IsTracked && OVRInput.GetDown(currentButton) && !ejectionPhase)//A
+        if (currentHand != null && currentHand.IsTracked && OVRInput.GetDown(currentButton) && !ejectionPhase)
         {
             OnHandClosed();
         }
-        if (currentHand != null && currentHand.IsTracked && OVRInput.GetUp(currentButton) && !ejectionPhase)//A
+        if (currentHand != null && currentHand.IsTracked && OVRInput.GetUp(currentButton) && !ejectionPhase)
         {
             OnHandOpened();
         }
@@ -204,7 +223,8 @@ public class Player : MonoBehaviour
         movablesAbsorbed.Add(movable);
         movable.StopAttraction();
 
-        transform.DOScale(Vector3.one * 0.9f, 0.1f).SetLoops(2, LoopType.Yoyo);
+        Vector3 startScale = transform.localScale;
+        transform.DOScale(startScale * 0.9f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 
     public void EjectMovables()

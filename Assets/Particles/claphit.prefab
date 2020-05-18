@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 104178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 3
@@ -5757,7 +5757,7 @@ Transform:
   m_GameObject: {fileID: 121342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 5
@@ -11527,7 +11527,7 @@ Transform:
   m_GameObject: {fileID: 121388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 1
@@ -11782,7 +11782,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -11835,7 +11835,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -11888,7 +11888,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -11941,7 +11941,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -17229,7 +17229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &411398
 Transform:
   m_ObjectHideFlags: 0
@@ -17239,7 +17239,7 @@ Transform:
   m_GameObject: {fileID: 146650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0.52123, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 0
@@ -21820,7 +21820,7 @@ GameObject:
   - component: {fileID: 199742533189026046}
   - component: {fileID: 198552259928792682}
   m_Layer: 0
-  m_Name: pf_vfx-ult_demo_psys_oneshot_criticalHit2
+  m_Name: claphit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26596,7 +26596,7 @@ Transform:
   m_GameObject: {fileID: 159728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0.52123, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 6
@@ -32307,7 +32307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &406086
 Transform:
   m_ObjectHideFlags: 0
@@ -32317,7 +32317,7 @@ Transform:
   m_GameObject: {fileID: 162956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 2
@@ -38047,7 +38047,7 @@ Transform:
   m_GameObject: {fileID: 186018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 0.52123, y: 0, z: 0.52123}
   m_Children: []
   m_Father: {fileID: 400350}
   m_RootOrder: 4
