@@ -41,6 +41,12 @@ public class Movable : MonoBehaviour
 
     void Update()
     {
+
+        float scaleX = Mathf.Cos(Time.time * 5f) * 0.5f + 1;
+        float scaleY = Mathf.Sin(Time.time * 5f) * 0.5f + 1;
+        GetComponent<MeshRenderer>().material.SetTextureScale("_MainTex", new Vector2(scaleX, scaleY));
+
+
         if (isAttracted)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);

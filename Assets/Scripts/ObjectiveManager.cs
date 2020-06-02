@@ -13,6 +13,10 @@ public class ObjectiveManager : MonoBehaviour
     public Material noGravityPlanetMaterial;
     public Material gravityPlanetMaterial;
 
+    public GameObject particleObjectiveGravity;
+    public GameObject particleObjectiveNeutral;
+    public GameObject particleObjectiveNoGravity;
+
     void Awake()
     {
         if (Instance == null)

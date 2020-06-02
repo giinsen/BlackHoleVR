@@ -14,6 +14,7 @@ public class Objective : MonoBehaviour
     private List<Movable> movablesAttracted = new List<Movable>();
 
     [Header("Galaxy")]
+    public GameObject sphereParentParticles;
     public GameObject sun;
     public GameObject blackHole;
     public GameObject galaxyParticles;
@@ -39,7 +40,6 @@ public class Objective : MonoBehaviour
         movableTypeToAttract = Movable.MovableType.NONE;
         startScaleAttract = planetsGalaxy.transform.localScale.x;
         difScaleAttract = startScaleAttract - minScaleAttract;
-
         HidePlanetsGalaxy();
     }
 
@@ -122,19 +122,27 @@ public class Objective : MonoBehaviour
 
     private void SetObjectiveMaterial()
     {
+        for (int i = 0; i < sphereParentParticles.transform.childCount; i++)
+        {
+            Destroy(sphereParentParticles.transform.GetChild(i).gameObject);
+        }
+
         Material mObjective = ObjectiveManager.Instance.neutralObjectiveMaterial;
         Material mPlanetsGalaxy = ObjectiveManager.Instance.neutralObjectiveMaterial;
         switch (movableTypeToAttract)
         {
             case Movable.MovableType.GRAVITY:
+                Instantiate(ObjectiveManager.Instance.particleObjectiveGravity, sphereParentParticles.transform);
                 mObjective = ObjectiveManager.Instance.gravityObjectiveMaterial;
                 mPlanetsGalaxy = ObjectiveManager.Instance.gravityPlanetMaterial;
                 break;
             case Movable.MovableType.NOGRAVITY:
+                Instantiate(ObjectiveManager.Instance.particleObjectiveNoGravity, sphereParentParticles.transform);
                 mObjective = ObjectiveManager.Instance.noGravityObjectiveMaterial;
                 mPlanetsGalaxy = ObjectiveManager.Instance.noGravityPlanetMaterial;
                 break;
             case Movable.MovableType.NONE:
+                Instantiate(ObjectiveManager.Instance.particleObjectiveNeutral, sphereParentParticles.transform);
                 mObjective = ObjectiveManager.Instance.neutralObjectiveMaterial;
                 break;
         }

@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public float distanceFromCenter;
     public float moveSpeed;
     public float offsetUp;
+    public float offsetRightRightHand;
+    public float offsetRightLeftHand;
     private bool canMove = false;
 
     [Header("Ejection")]
@@ -148,7 +150,13 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(transform.position);
         if (currentHand != null && currentHand.IsTracked && canMove)
         {
-            Vector3 h = currentHand.transform.position + Vector3.up * offsetUp;// + (hand.gameObject.transform.forward * -0.2f);
+            float r = 0;
+            if (currentHand == rightHand)
+                r = offsetRightRightHand;
+            if (currentHand == leftHand)
+                r = offsetRightLeftHand;
+
+            Vector3 h = currentHand.transform.position + Vector3.up * offsetUp + Vector3.right * r;
             Vector3 v = (h - cam.transform.position).normalized;
             transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
         }
