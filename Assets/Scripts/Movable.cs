@@ -5,22 +5,21 @@ using UnityEngine;
 
 public class Movable : MonoBehaviour
 {
-    public enum MovableType { GRAVITY, NOGRAVITY }
+    public enum MovableType { GRAVITY, NOGRAVITY, NONE }
     public MovableType movableType;
 
     private Rigidbody rb;
     [HideInInspector] public Player player;
     [HideInInspector] public bool isAttracted;
 
-    private bool isAbsorbed = false;
+    public bool isAbsorbed = false;
     private bool isUsingGravity;
 
     public bool canBeAttracted = true;
     public float startForce;
     public float domeCollisionForce;
+    public float objectiveCollisionForce;
     public GameObject domeCollisionParticles;
-
-    public Vector2 randomScaleRange;
 
     private Objective currentObjective;
     private bool isAttractedObjective = false;
@@ -35,9 +34,9 @@ public class Movable : MonoBehaviour
         Vector3 randomStartForce = new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         rb.AddForce(randomStartForce * startForce, ForceMode.Impulse);
 
-        float randomScale = Random.Range(randomScaleRange.x, randomScaleRange.y);
-        transform.localScale = new Vector3(randomScale, randomScale, randomScale);
-        rb.mass = randomScale;
+        //float randomScale = Random.Range(randomScaleRange.x, randomScaleRange.y);
+        //transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        //rb.mass = randomScale;
     }
 
     void Update()
@@ -54,10 +53,10 @@ public class Movable : MonoBehaviour
             transform.position = player.transform.position;
         }
 
-        if (isAttractedObjective)
-        {
-            rb.AddForce((currentObjective.transform.position - transform.position).normalized * currentObjective.attractForce, ForceMode.Impulse);
-        }
+        //if (isAttractedObjective)
+        //{
+        //    rb.AddForce((currentObjective.transform.position - transform.position).normalized * currentObjective.attractForce, ForceMode.Impulse);
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -96,11 +95,11 @@ public class Movable : MonoBehaviour
         Vector3 startScale = transform.localScale;
         transform.DOMove(player.transform.position, 0.5f);
         transform.DOScale(Vector3.zero, 0.5f);
+        isAbsorbed = true;
 
         yield return new WaitForSeconds(1f);
 
         GetComponent<MeshRenderer>().enabled = false;
-        isAbsorbed = true;
         transform.localScale = startScale;
     }
 
@@ -112,7 +111,7 @@ public class Movable : MonoBehaviour
         //Vector3 dir = -player.transform.position.normalized;
         Vector3 random = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         GetComponent<Collider>().enabled = true;
-
+        GetComponent<Rigidbody>().isKinematic = false;
         rb.AddForce(direction * player.explusionForce + random * player.randomEjectionDirection, ForceMode.Impulse);
 
     }
@@ -129,17 +128,25 @@ public class Movable : MonoBehaviour
             rb.useGravity = useGravity;
     }
 
-    public void OnEnterObjective(Objective o)
+    public void OnEnterObjective(Objective o, Vector3 planetPosition)
     {
         isAttractedObjective = true;
         rb.velocity = Vector3.zero;
         //rb.angularVelocity = Vector3.zero;
         currentObjective = o;
+        GetComponent<Collider>().enabled = false;
+        transform.DOMove(planetPosition, 0.2f).OnComplete(() => { GetComponent<MeshRenderer>().enabled = false; });
+        
     }
 
     public void OnExitObjective(Objective o)
     {
         isAttractedObjective = false;
         currentObjective = null;
+    }
+
+    public void OnExpulseObjective(Objective o)
+    {
+        rb.AddForce(-(o.transform.position - transform.position).normalized * o.repulseForce, ForceMode.Impulse);
     }
 }

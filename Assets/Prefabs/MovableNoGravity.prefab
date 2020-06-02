@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2286012543074719099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 2626165533372374215}
   m_RootOrder: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   canBeAttracted: 1
   startForce: 50
   domeCollisionForce: 5
+  objectiveCollisionForce: 0
   domeCollisionParticles: {fileID: 0}
-  randomScaleRange: {x: 1, y: 1}
 --- !u!33 &2286012543074719100
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2286012543074719099}
-  m_Mesh: {fileID: 289301614986012343, guid: 205f349b3321d9548866be337db176c8, type: 3}
+  m_Mesh: {fileID: -3292925553009838691, guid: 1be8c051df7356045bc7ebeecf740a1f, type: 3}
 --- !u!23 &2286012543074719103
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ MeshRenderer:
   m_GameObject: {fileID: 2286012543074719099}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -132,7 +132,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 289301614986012343, guid: 205f349b3321d9548866be337db176c8, type: 3}
+  m_Mesh: {fileID: -3292925553009838691, guid: 1be8c051df7356045bc7ebeecf740a1f, type: 3}
 --- !u!96 &404690082802566493
 TrailRenderer:
   serializedVersion: 2

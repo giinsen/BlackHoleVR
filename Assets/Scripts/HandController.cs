@@ -28,7 +28,12 @@ public class HandController : MonoBehaviour
 
     void Update()
     {
-        mesh.materials[0] = currentMaterial;
+        if (mesh.material != currentMaterial)
+        {
+            Material[] mats = mesh.materials;
+            mats[0] = currentMaterial;
+            mesh.materials = mats;
+        }
     }
 
 
@@ -40,11 +45,13 @@ public class HandController : MonoBehaviour
 
     public void ActiveControlScaleHand()
     {
+        Debug.Log("black material");
         currentMaterial = controlScaleMaterial;
     }
 
     public void ResetFillControlHand()
     {
+        Debug.Log("white material");
         currentMaterial = neutralMaterial;
         delayStartScaleImage.fillAmount = 0;
         delayStartScaleImage2.fillAmount = 0;

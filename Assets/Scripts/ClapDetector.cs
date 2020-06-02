@@ -22,6 +22,8 @@ public class ClapDetector : MonoBehaviour
     public UnityEvent onClap;
     public GameObject clapFeedback;
 
+    public bool lagClap = false;
+
     private bool clapInvoked = true;
     void Start()
     {
@@ -43,9 +45,10 @@ public class ClapDetector : MonoBehaviour
     {
         if (rightHand.IsTracked && leftHand.IsTracked)
         {
-            if (!clapInvoked && Vector3.Distance(rightHand.transform.position, leftHand.transform.position) <= thresholdDistance
-                && rightHandVelocity.x < -0.3f && leftHandVelocity.x > 0.3f)
+            if ((!clapInvoked && Vector3.Distance(rightHand.transform.position, leftHand.transform.position) <= thresholdDistance
+                && rightHandVelocity.x < -0.3f && leftHandVelocity.x > 0.3f) || lagClap)
             {
+                lagClap = false;
                 onClap.Invoke();
                 Instantiate(clapFeedback, rightHand.transform.position, Quaternion.identity);
                 clapInvoked = true;

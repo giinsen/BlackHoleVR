@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
     [HideInInspector] private List<Movable> movablesToAttract = new List<Movable>();
     [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
 
+    [HideInInspector] private List<Objective> objectivesToAttract = new List<Objective>();
+
     private PlayerModel playerModel;
     private Planets planets;
 
@@ -159,6 +161,13 @@ public class Player : MonoBehaviour
                     m.StartAttraction();
                 }
             }
+            foreach (Objective o in objectivesToAttract)
+            {
+                if (!o.isAttracted)
+                {
+                    o.StartAttraction();
+                }
+            }
         }
     }
 
@@ -172,22 +181,42 @@ public class Player : MonoBehaviour
     public void OnAttractZoneEnter(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
-        if (m == null) return;
+        if (m != null)
+        {
+            if (!movablesToAttract.Contains(m) && m.canBeAttracted)
+                movablesToAttract.Add(m);
+        }
 
-        if (!movablesToAttract.Contains(m) && m.canBeAttracted)
-            movablesToAttract.Add(m);
+        Objective o = other.gameObject.GetComponent<Objective>();
+        if (o != null)
+        {
+            if (!objectivesToAttract.Contains(o))
+                objectivesToAttract.Add(o);
+        }
     }
     
     public void OnAttractZoneExit(Collider other)
     {
         Movable m = other.gameObject.GetComponent<Movable>();
-        if (m == null) return;
-
-        if (movablesToAttract.Contains(m))
+        if (m != null)
         {
-            m.StopAttraction();
-            movablesToAttract.Remove(m);
+            if (movablesToAttract.Contains(m))
+            {
+                m.StopAttraction();
+                movablesToAttract.Remove(m);
+            }
         }
+
+        Objective o = other.gameObject.GetComponent<Objective>();
+        if (o != null)
+        {
+            if (objectivesToAttract.Contains(o))
+            {
+                o.StopAttraction();
+                objectivesToAttract.Remove(o);
+            }                
+        }
+
     }
 
     public void OnHandClosed()
@@ -212,6 +241,11 @@ public class Player : MonoBehaviour
         {
             m.StopAttraction();
         }
+
+        foreach (Objective o in objectivesToAttract)
+        {
+            o.StopAttraction();
+        }
     }
 
     public void Absorbtion(Movable movable)
@@ -221,9 +255,6 @@ public class Player : MonoBehaviour
 
         movablesAbsorbed.Add(movable);
         movable.StopAttraction();
-
-        Vector3 startScale = transform.localScale;
-        transform.DOScale(startScale * 0.9f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 
     public void EjectMovables()
