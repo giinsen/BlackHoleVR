@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4930375192945433115}
   - component: {fileID: 4930375192959565833}
   - component: {fileID: 4930375192961508679}
+  - component: {fileID: 8890146626139294350}
   m_Layer: 0
   m_Name: SphereObjectiveNoGravity
   m_TagString: Untagged
@@ -4610,3 +4611,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8890146626139294350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930375192945867081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25c01c0d7412bf4b89263d352f3be2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: {x: 0, y: 1, z: 0}
+  speed: 35

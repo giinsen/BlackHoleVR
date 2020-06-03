@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using DG.Tweening;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class Planets : MonoBehaviour
     {
         player = GetComponentInParent<Player>();
         playerModel = player.GetComponentInChildren<PlayerModel>();
-        SetPlanetsSize();
+        //SetPlanetsSize();
     }
 
     void Update()
@@ -35,13 +36,20 @@ public class Planets : MonoBehaviour
         planetNoGravityDirection = (planetNoGravity.transform.position - transform.position).normalized;
     }
 
+    public void AnimationEjectMovable(float time, GameObject planet)
+    {
+        Vector3 startScale = planet.transform.localScale;
+        planet.transform.DOScale(startScale * 0.2f, time / 3).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InOutBounce);
+        planet.transform.DOShakePosition(time / 6);
+    }
+
     public void SetState(Player.State state)
     {
         switch (state)
         {
             case Player.State.NEUTRAL:
                 canRotate = true;
-                SetPlanetsSize();
+                //SetPlanetsSize();
                 gameObject.SetActive(true);
                 break;
             case Player.State.ATTRACT:

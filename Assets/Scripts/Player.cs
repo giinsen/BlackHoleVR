@@ -289,17 +289,22 @@ public class Player : MonoBehaviour
             foreach (Movable m in tmp)
             {
                 Vector3 direction = new Vector3();
+                GameObject pl = new GameObject();
                 switch (m.movableType)
                 {
                     case Movable.MovableType.GRAVITY:
+                        pl = planets.planetGravity;
                         direction = planets.planetGravityDirection;
                         break;
                     case Movable.MovableType.NOGRAVITY:
+                        pl = planets.planetNoGravity;
                         direction = planets.planetNoGravityDirection;
                         break;
                 }
-                m.EjectFromPlayer(direction);
+                m.EjectFromPlayer(direction, pl);
+                m.SetScale(scaleState);
                 playerModel.AnimationEjectMovable(delayBetweenExplusion);
+                planets.AnimationEjectMovable(delayBetweenExplusion, pl);
                 yield return new WaitForSeconds(delayBetweenExplusion);
             }
 

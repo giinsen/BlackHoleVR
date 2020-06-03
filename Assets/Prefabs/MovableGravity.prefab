@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 452269234167738131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5544442210344236183}
   m_RootOrder: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   movableType: 0
   player: {fileID: 0}
   isAttracted: 0
+  isAbsorbed: 0
   canBeAttracted: 1
   startForce: 0
   domeCollisionForce: 0
@@ -62,7 +63,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452269234167738131}
-  m_Mesh: {fileID: -3292925553009838691, guid: 1be8c051df7356045bc7ebeecf740a1f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 23591f6553e84a547a6a042bbf997eee, type: 2}
 --- !u!23 &452269234167738216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131,7 +132,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -3292925553009838691, guid: 1be8c051df7356045bc7ebeecf740a1f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b3599e73d03e7654ea5dbace9ac89aaf, type: 2}
 --- !u!1 &9083197915911415638
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,8 @@ public class Movable : MonoBehaviour
 
     private Objective currentObjective;
     private bool isAttractedObjective = false;
-    
+
+    //public Vector2 randomScaleRange;
 
     void Start()
     {
@@ -109,12 +110,12 @@ public class Movable : MonoBehaviour
         transform.localScale = startScale;
     }
 
-    public void EjectFromPlayer(Vector3 direction)
+    public void EjectFromPlayer(Vector3 direction, GameObject planet)
     {
+        transform.position = planet.transform.position; 
         isAbsorbed = false;
         GetComponent<MeshRenderer>().enabled = true;
         SetUseGravity(true);
-        //Vector3 dir = -player.transform.position.normalized;
         Vector3 random = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         GetComponent<Collider>().enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
@@ -122,6 +123,26 @@ public class Movable : MonoBehaviour
 
     }
 
+    public void SetScale(Player.ScaleState s)
+    {
+        float scale = 0;
+        switch (s)
+        {
+            case Player.ScaleState.SMALL:
+                scale = player.smallScale;
+                break;
+            case Player.ScaleState.NORMAL:
+                scale = player.normalScale;
+                break;
+            case Player.ScaleState.BIG:
+                scale = player.bigScale;
+                break;
+            case Player.ScaleState.HUGE:
+                scale = player.hugeScale;
+                break;
+        }
+        transform.localScale = new Vector3(scale, scale, scale);
+    }
     public IEnumerator EnableCollider()
     {
         yield return new WaitForSeconds(0.4f);
