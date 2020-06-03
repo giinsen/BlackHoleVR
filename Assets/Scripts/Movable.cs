@@ -120,7 +120,6 @@ public class Movable : MonoBehaviour
         GetComponent<Collider>().enabled = true;
         GetComponent<Rigidbody>().isKinematic = false;
         rb.AddForce(direction * player.explusionForce + random * player.randomEjectionDirection, ForceMode.Impulse);
-
     }
 
     public void SetScale(Player.ScaleState s)
@@ -142,6 +141,7 @@ public class Movable : MonoBehaviour
                 break;
         }
         transform.localScale = new Vector3(scale, scale, scale);
+        rb.mass = scale;
     }
     public IEnumerator EnableCollider()
     {
