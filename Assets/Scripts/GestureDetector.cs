@@ -30,7 +30,7 @@ public class GestureDetector : MonoBehaviour
     void Start()
     {
         fingerBones = new List<OVRBone>(skeleton.Bones);
-        Debug.Log(skeleton.Bones.Count);
+        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + skeleton.Bones.Count);
         previousGesture = new Gesture();
     }
 

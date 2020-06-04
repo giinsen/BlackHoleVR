@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using FMOD;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,6 +59,9 @@ public class Player : MonoBehaviour
     private bool scaleInProgress = false;
     private float startDistanceBetweenHands = 0;
 
+    [Header("Maestro")]
+    public GameObject maestro;
+
     [HideInInspector] private List<Movable> movablesToAttract = new List<Movable>();
     [HideInInspector] public List<Movable> movablesAbsorbed = new List<Movable>();
 
@@ -75,6 +79,8 @@ public class Player : MonoBehaviour
         scaleState = ScaleState.NORMAL;
         rightHandController = rightHand.GetComponent<HandController>();
         leftHandController = leftHand.GetComponent<HandController>();
+
+        SoundManager.Instance.StartTexture();
     }
 
     void Update()
@@ -161,6 +167,12 @@ public class Player : MonoBehaviour
             Vector3 h = currentHand.transform.position + Vector3.up * offsetUp + Vector3.right * r;
             Vector3 v = (h - cam.transform.position).normalized;
             transform.position = Vector3.Lerp(transform.position, v * distanceFromCenter, moveSpeed * Time.deltaTime);
+
+            Vector3 v2 = (transform.transform.position - currentHand.transform.position).normalized;
+            maestro.transform.position = currentHand.transform.position + (v2/2);
+            maestro.transform.rotation = Quaternion.LookRotation(transform.position);
+            SoundManager.Instance.ViolinFromDirection(maestro.transform.position);
+            //maestro.transform.Rotate(maestro.transform.right * 90);
         }
         if (currentHand != null && currentHand.IsTracked && canAttract && !ejectionPhase)
         {
