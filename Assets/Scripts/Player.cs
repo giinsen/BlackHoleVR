@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public float attractForce;
 
     [Header("Bigger/Smaller")]
+    public float timeChangeScale;
     public float distanceChangeScale;
     public float delayStartScale;
     private float delayStartScaleTmp;

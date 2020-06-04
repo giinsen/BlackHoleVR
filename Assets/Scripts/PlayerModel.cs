@@ -40,16 +40,16 @@ public class PlayerModel : MonoBehaviour
         switch (scaleState)
         {
             case Player.ScaleState.SMALL:
-                player.transform.DOScale(new Vector3(player.smallScale, player.smallScale, player.smallScale), 0.3f);
+                player.transform.DOScale(new Vector3(player.smallScale, player.smallScale, player.smallScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.NORMAL:
-                player.transform.DOScale(new Vector3(player.normalScale, player.normalScale, player.normalScale), 0.3f);
+                player.transform.DOScale(new Vector3(player.normalScale, player.normalScale, player.normalScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.BIG:
-                player.transform.DOScale(new Vector3(player.bigScale, player.bigScale, player.bigScale), 0.3f);
+                player.transform.DOScale(new Vector3(player.bigScale, player.bigScale, player.bigScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.HUGE:
-                player.transform.DOScale(new Vector3(player.hugeScale, player.hugeScale, player.hugeScale), 0.3f);
+                player.transform.DOScale(new Vector3(player.hugeScale, player.hugeScale, player.hugeScale), player.timeChangeScale);
                 break;
         }
     }

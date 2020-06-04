@@ -44,7 +44,7 @@ public class ClapDetector : MonoBehaviour
         if (rightHand.IsTracked && leftHand.IsTracked)
         {
             if (!clapInvoked && Vector3.Distance(rightHand.transform.position, leftHand.transform.position) <= thresholdDistance
-                && rightHandVelocity.x < -0.2f && leftHandVelocity.x > 0.2f)
+                && rightHandVelocity.x < -0.3f && leftHandVelocity.x > 0.3f)
             {
                 onClap.Invoke();
                 Instantiate(clapFeedback, rightHand.transform.position, Quaternion.identity);
