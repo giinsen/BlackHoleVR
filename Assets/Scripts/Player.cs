@@ -60,6 +60,12 @@ public class Player : MonoBehaviour
     private bool scaleInProgress = false;
     private float startDistanceBetweenHands = 0;
 
+    [Header("Bigger/Smaller - Movable Scale")]
+    public float movableSmallScale;
+    public float movableNormalScale;
+    public float movableBigScale;
+    public float movableHugeScale;
+
     [Header("Maestro")]
     public GameObject maestro;
 
@@ -76,9 +82,9 @@ public class Player : MonoBehaviour
     {
         playerModel = GetComponentInChildren<PlayerModel>();
         planets = GetComponentInChildren<Planets>();
+        currentScale = normalScale;
         state = State.NEUTRAL;
         scaleState = ScaleState.NORMAL;
-        currentScale = normalScale;
         rightHandController = rightHand.GetComponent<HandController>();
         leftHandController = leftHand.GetComponent<HandController>();
 

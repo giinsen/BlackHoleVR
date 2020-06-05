@@ -133,16 +133,16 @@ public class Movable : MonoBehaviour
         switch (s)
         {
             case Player.ScaleState.SMALL:
-                scale = player.smallScale;
+                scale = player.movableSmallScale;
                 break;
             case Player.ScaleState.NORMAL:
-                scale = player.normalScale;
+                scale = player.movableNormalScale;
                 break;
             case Player.ScaleState.BIG:
-                scale = player.bigScale;
+                scale = player.movableBigScale;
                 break;
             case Player.ScaleState.HUGE:
-                scale = player.hugeScale;
+                scale = player.movableHugeScale;
                 break;
         }
         transform.localScale = new Vector3(scale, scale, scale);
