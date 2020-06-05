@@ -16,6 +16,21 @@ public class PlayerModel : MonoBehaviour
 
     public GameObject planets;
 
+    public GameObject neutralSmall;
+    public GameObject neutralNormal;
+    public GameObject neutralBig;
+    public GameObject neutralHuge;
+
+    public GameObject attractSmall;
+    public GameObject attractNormal;
+    public GameObject attractBig;
+    public GameObject attractHuge;
+
+    public GameObject ejectSmall;
+    public GameObject ejectNormal;
+    public GameObject ejectBig;
+    public GameObject ejectHuge;
+
     private Player player;
     void Awake()
     {
@@ -37,24 +52,53 @@ public class PlayerModel : MonoBehaviour
 
     public void SetScale(Player.ScaleState scaleState)
     {
+        neutralSmall.SetActive(false);
+        neutralNormal.SetActive(false);
+        neutralBig.SetActive(false);
+        neutralHuge.SetActive(false);
+
+        attractSmall.SetActive(false);
+        attractNormal.SetActive(false);
+        attractBig.SetActive(false);
+        attractHuge.SetActive(false);
+
+        ejectSmall.SetActive(false);
+        ejectNormal.SetActive(false);
+        ejectBig.SetActive(false);
+        ejectHuge.SetActive(false);
+
         switch (scaleState)
         {
             case Player.ScaleState.SMALL:
+                neutralSmall.SetActive(true);
+                attractSmall.SetActive(true);
+                ejectSmall.SetActive(true);
                 player.transform.DOScale(new Vector3(player.smallScale, player.smallScale, player.smallScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.NORMAL:
+                neutralNormal.SetActive(true);
+                attractNormal.SetActive(true);
+                ejectNormal.SetActive(true);
                 player.transform.DOScale(new Vector3(player.normalScale, player.normalScale, player.normalScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.BIG:
+                neutralBig.SetActive(true);
+                attractBig.SetActive(true);
+                ejectBig.SetActive(true);
                 player.transform.DOScale(new Vector3(player.bigScale, player.bigScale, player.bigScale), player.timeChangeScale);
                 break;
             case Player.ScaleState.HUGE:
+                neutralHuge.SetActive(true);
+                attractHuge.SetActive(true);
+                ejectHuge.SetActive(true);
                 player.transform.DOScale(new Vector3(player.hugeScale, player.hugeScale, player.hugeScale), player.timeChangeScale);
                 break;
         }
     }
-    public void SetState(Player.State state)
+    public IEnumerator SetState(Player.State state)
     {
+        float f = player.currentScale;
+        player.transform.DOScale(Vector3.zero, 0.2f);
         switch (state)
         {
             case Player.State.NEUTRAL:
@@ -67,7 +111,13 @@ public class PlayerModel : MonoBehaviour
                 SetMaterial(ejectMaterial);
                 break;
         }
-        SetElements(state);
+
+        StartCoroutine(SetElements(state));
+
+        yield return new WaitForSeconds(0.2f);
+
+        player.transform.DOScale(new Vector3(f,f,f), 0.2f);
+
         planets.GetComponent<Planets>().SetState(state);
     }
 
@@ -77,8 +127,14 @@ public class PlayerModel : MonoBehaviour
         meshRenderer.material = m;
     }
 
-    public void SetElements(Player.State state)
+    public IEnumerator SetElements(Player.State state)
     {
+        //particlesNeutral.transform.DOScale(Vector3.zero, 0.2f);
+        //particlesAttract.transform.DOScale(Vector3.zero, 0.2f);
+        //particlesEject.transform.DOScale(Vector3.zero, 0.2f);
+
+        yield return new WaitForSeconds(0.0f);
+
         switch (state)
         {
             case Player.State.NEUTRAL:
@@ -97,6 +153,10 @@ public class PlayerModel : MonoBehaviour
                 particlesEject.SetActive(true);
                 break;
         }
+
+        //particlesNeutral.transform.DOScale(player.currentScale, 0.2f);
+        //particlesAttract.transform.DOScale(player.currentScale, 0.2f);
+        //particlesEject.transform.DOScale(player.currentScale, 0.2f);
     }
 
     public void AnimationBeforeEjection(float time)

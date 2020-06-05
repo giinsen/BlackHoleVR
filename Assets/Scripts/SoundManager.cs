@@ -147,7 +147,7 @@ public class SoundManager : MonoBehaviour
     private void ChangeViolinSound(DirectionState d)
     {
         
-        UnityEngine.Debug.Log(d.ToString());
+        //UnityEngine.Debug.Log(d.ToString());
 
         //StartCoroutine(ReduceVolumeCurrentViolin());
         currentViolin.setParameterValue("Volume", 0);

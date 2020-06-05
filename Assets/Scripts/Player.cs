@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private ScaleState scaleState { get { return _scaleState; } set { _scaleState = value; playerModel.SetScale(value); } }
     public enum State { NEUTRAL, ATTRACT, EJECT }
     private State _state;
-    private State state { get { return _state; } set { _state = value; playerModel.SetState(value); } }
+    private State state { get { return _state; } set { _state = value; StartCoroutine(playerModel.SetState(value)); } }
 
     public OVRHand rightHand;
     private HandController rightHandController;
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public AnimationCurve attractCurve;
     private bool canAttract = false;
     [HideInInspector] public float attractForce;
+    [HideInInspector] public float currentScale;
 
     [Header("Bigger/Smaller")]
     public float timeChangeScale;
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
         planets = GetComponentInChildren<Planets>();
         state = State.NEUTRAL;
         scaleState = ScaleState.NORMAL;
+        currentScale = normalScale;
         rightHandController = rightHand.GetComponent<HandController>();
         leftHandController = leftHand.GetComponent<HandController>();
 
@@ -198,6 +200,23 @@ public class Player : MonoBehaviour
         if (scaleState < 0 || scaleState >= Enum.GetNames(typeof(ScaleState)).Length) return;
         this.scaleState = (ScaleState)scaleState;
         attractForce = attractionForceArray[scaleState];
+
+        switch (this.scaleState)
+        {
+            case ScaleState.SMALL:
+                currentScale = smallScale;
+                break;
+            case ScaleState.NORMAL:
+                currentScale = normalScale;
+                break;
+            case ScaleState.BIG:
+                currentScale = bigScale;
+                break;
+            case ScaleState.HUGE:
+                currentScale = hugeScale;
+                break;
+        }
+        
     }
 
     public void OnAttractZoneEnter(Collider other)

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dome
+  - SpaceScene_Nebula
+  - Small
+  - Normal
+  - Big
+  - Huge
   layers:
   - Default
   - TransparentFX
