@@ -80,6 +80,8 @@ public class Movable : MonoBehaviour
     {
         SetUseGravity(true);
         isAttracted = false;
+
+        GetComponent<MeshRenderer>().material.SetFloat("_AtmosFalloff", 3f);
     }
 
     public void StartAttraction()
@@ -88,6 +90,8 @@ public class Movable : MonoBehaviour
         rb.velocity = rb.velocity * player.velocityMultiplierOnStartAttraction;
         rb.AddTorque(new Vector3(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)));
         isAttracted = true;
+
+        GetComponent<MeshRenderer>().material.SetFloat("_AtmosFalloff", 1f);
     }
 
     public void Absorption()
@@ -95,6 +99,7 @@ public class Movable : MonoBehaviour
         GetComponent<Collider>().enabled = false;
         SetUseGravity(false);
         StartCoroutine(_Absorption());
+        GetComponent<MeshRenderer>().material.SetFloat("_AtmosFalloff", 3f);
     }
 
     public IEnumerator _Absorption()
