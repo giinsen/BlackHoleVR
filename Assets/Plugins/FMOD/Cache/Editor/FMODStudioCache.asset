@@ -54,7 +54,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 1848866083965153482}
+  - {fileID: 5201532917138719690}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\gabri\Desktop\Projects\Black Hole VR\BlackHoleFMOD\Build\Mobile\Master
     Bank.bank
-  lastModified: 637268930175430500
+  lastModified: 637268958345057030
   LoadResult: 0
   FileSizes:
   - Name: Mobile
@@ -98,7 +98,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 1255887712955535490}
+  - {fileID: -386272796069733541}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -186,7 +186,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6171438509317075595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +238,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-5394350364161151164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Left/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-5307555534612895589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +344,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2335328669465818970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +361,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1772059993122236105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +382,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -2335328669465818970}
+  - {fileID: 8612688621231935402}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -403,6 +420,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-386272796069733541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Right/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-39885591698712249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +483,7 @@ MonoBehaviour:
   - {fileID: -7993273229204028397}
   StringsBanks:
   - {fileID: 1774420283928342104}
-  stringsBankWriteTime: 637268930175516043
+  stringsBankWriteTime: 637268958345145694
   cacheVersion: 3
 --- !u!114 &380910517554361194
 MonoBehaviour:
@@ -539,7 +573,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -4209356228382820685}
+  - {fileID: 1391866687390851353}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -559,7 +593,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &1241337140598433113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,7 +627,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &1358412225731426101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,6 +639,40 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Up/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 0
+--- !u!114 &1391866687390851353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Down/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
+--- !u!114 &1463047386349533878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/UpLeft/Volume
   m_EditorClassIdentifier: 
   Name: Volume
   Min: 0
@@ -647,7 +715,7 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: BlackHoleFMOD\Build\Mobile\Master Bank.strings.bank
-  lastModified: 637268930175516043
+  lastModified: 637268958345145694
   LoadResult: 0
   FileSizes:
   - Name: Mobile
@@ -669,7 +737,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &1943331406172179591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,6 +755,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1981557723450474378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Up/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &2818559509761948585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +826,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 1358412225731426101}
+  - {fileID: 1981557723450474378}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -765,7 +850,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -6262450465058866833}
+  - {fileID: 7884534299948711783}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
@@ -803,6 +888,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &5201532917138719690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DownRight/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &5466919771682251872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,7 +989,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &7294762795073381661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,10 +1010,27 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 865374842103422306}
+  - {fileID: -5394350364161151164}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
+--- !u!114 &7884534299948711783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/UpRight/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8216408195437371675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,6 +1048,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &8612688621231935402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DownLeft/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &8635931346151387893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,7 +1102,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 6161186444502308628}
+  - {fileID: 1463047386349533878}
   MinDistance: 1
   MaxDistance: 75
   Length: 12000
