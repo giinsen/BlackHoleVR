@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
             Vector3 v2 = (transform.transform.position - currentHand.transform.position).normalized;
             maestro.transform.position = currentHand.transform.position + (v2/2);
             maestro.transform.rotation = Quaternion.LookRotation(transform.position);
-            SoundManager.Instance.ViolinFromDirection(maestro.transform.position);
+
             //maestro.transform.Rotate(maestro.transform.right * 90);
         }
         if (currentHand != null && currentHand.IsTracked && canAttract && !ejectionPhase)
@@ -221,8 +221,7 @@ public class Player : MonoBehaviour
             case ScaleState.HUGE:
                 currentScale = hugeScale;
                 break;
-        }
-        
+        }      
     }
 
     public void OnAttractZoneEnter(Collider other)
@@ -310,6 +309,7 @@ public class Player : MonoBehaviour
             return;
         StartCoroutine(_EjectMovables());
         state = State.EJECT;
+        SoundManager.Instance.StopTexture();
     }
 
     private IEnumerator _EjectMovables()
@@ -322,6 +322,13 @@ public class Player : MonoBehaviour
         yield return StartCoroutine(AnimationBeforeEjection());
 
         bool movablesAbsorbedEmpty = false;
+
+
+        bool tensionSoundIsLaunched = false;
+        float durationEjection = delayBetweenExplusion * movablesAbsorbed.Count;
+        if (durationEjection <= 3f)
+            tensionSoundIsLaunched = true;
+
         while (!movablesAbsorbedEmpty)
         {
             List<Movable> tmp = new List<Movable>(movablesAbsorbed);
@@ -340,10 +347,19 @@ public class Player : MonoBehaviour
                         direction = planets.planetNoGravityDirection;
                         break;
                 }
+                SoundManager.Instance.StartEjection();
                 m.EjectFromPlayer(direction, pl);
                 m.SetScale(scaleState);
                 playerModel.AnimationEjectMovable(delayBetweenExplusion);
                 planets.AnimationEjectMovable(delayBetweenExplusion, pl);
+
+                durationEjection -= delayBetweenExplusion;
+                if (durationEjection <= 2.2f && !tensionSoundIsLaunched)
+                {
+                    tensionSoundIsLaunched = true;
+                    SoundManager.Instance.StartTension();
+                }
+
                 yield return new WaitForSeconds(delayBetweenExplusion);
             }
 
@@ -357,6 +373,7 @@ public class Player : MonoBehaviour
         playerModel.GetComponents<Collider>()[0].enabled = true;
         playerModel.GetComponents<Collider>()[1].enabled = true;
         state = State.NEUTRAL;
+        SoundManager.Instance.StartTexture();
     }
 
     private IEnumerator AnimationBeforeEjection()

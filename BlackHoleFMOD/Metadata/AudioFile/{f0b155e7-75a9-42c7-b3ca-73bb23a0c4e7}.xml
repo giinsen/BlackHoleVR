@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{f0b155e7-75a9-42c7-b3ca-73bb23a0c4e7}">
+        <property name="assetPath">
+            <value>KSHMR_String_Sustain_02_D.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>7.8295691609977327</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{1250a1e6-a26e-4dae-abef-e052f8967a2e}</destination>
+        </relationship>
+    </object>
+</objects>

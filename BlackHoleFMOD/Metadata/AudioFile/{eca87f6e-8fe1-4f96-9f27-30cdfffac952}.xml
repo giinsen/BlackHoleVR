@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{eca87f6e-8fe1-4f96-9f27-30cdfffac952}">
+        <property name="assetPath">
+            <value>KSHMR_String_Stab_12_A_Pizzicato.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2.4942857142857142</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{1250a1e6-a26e-4dae-abef-e052f8967a2e}</destination>
+        </relationship>
+    </object>
+</objects>

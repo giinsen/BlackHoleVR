@@ -168,7 +168,8 @@ public class Movable : MonoBehaviour
         currentObjective = o;
         GetComponent<Collider>().enabled = false;
         transform.DOMove(planetPosition, 0.2f).OnComplete(() => { GetComponent<MeshRenderer>().enabled = false; });
-        
+
+        SoundManager.Instance.StartEnterObjective();
     }
 
     public void OnExitObjective(Objective o)

@@ -102,12 +102,18 @@ public class PlayerModel : MonoBehaviour
         switch (state)
         {
             case Player.State.NEUTRAL:
+                SoundManager.Instance.StartTransition1();
+                SoundManager.Instance.StopMoving();
                 SetMaterial(neutralMaterial);
                 break;
             case Player.State.ATTRACT:
+                SoundManager.Instance.StartMoving();
+                SoundManager.Instance.StartTransition2();
                 SetMaterial(attractMaterial);
                 break;
             case Player.State.EJECT:
+                SoundManager.Instance.StartTransition3();
+                SoundManager.Instance.StopMoving();
                 SetMaterial(ejectMaterial);
                 break;
         }
